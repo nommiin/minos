@@ -191,6 +191,25 @@
             }
         },
         {
+            "Key": "38e6f5df-8155-4a88-a72c-0bd7ba1abbdb",
+            "Value": {
+                "id": "6f9c8bb0-e98d-40e5-84d8-49bbc7c020db",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/minoGetShape\/minoGetShape.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3f5f28ed-f6cd-41a2-a1ba-a015b7fe5f16",
             "Value": {
                 "id": "338ecf83-4e75-4ca1-92bc-ce33b1f5e564",
@@ -226,6 +245,25 @@
                 ],
                 "resourcePath": "views\/44201d75-62eb-4b67-af0b-98a67b8a34b7.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "466f33dd-a3de-4e46-9eeb-8cea59fa301d",
+            "Value": {
+                "id": "77d46876-3870-4636-870a-533897850efb",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/minoDraw\/minoDraw.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -705,6 +743,7 @@
         }
     ],
     "script_order": [
+        "38e6f5df-8155-4a88-a72c-0bd7ba1abbdb",
         "a58a76aa-65f3-465e-a7c6-5c66edb28e27",
         "9e6023be-cd89-4a68-beb5-bed6fd49b21c",
         "5d8738ba-e014-4e96-b8ce-13092d01826f",
@@ -714,7 +753,8 @@
         "e84343f2-ada1-41f7-b893-af578be450b8",
         "9c7a41c9-ab8e-4236-81d7-21caf96f9989",
         "7ca675ec-d547-4476-8be0-a7b70001665f",
-        "0e3f5649-bcce-4d9d-910a-e4c63b12b26a"
+        "0e3f5649-bcce-4d9d-910a-e4c63b12b26a",
+        "466f33dd-a3de-4e46-9eeb-8cea59fa301d"
     ],
     "tutorial": ""
 }

@@ -48,6 +48,38 @@ if (mCheck == true) {
 	mDirty = true;
 }
 
+// Rotate
+if (keyboard_check_pressed(ord("W")) == true) {
+	var mPlacesTest = minoRotate(mBoard, mPlaces, minoDirection.LEFT), mRotate = true;
+	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
+		var mPlace = mPlacesTest[i];
+		if (mBoard[# mPlace[0], mPlace[1]] != 0) {
+			mRotate = false;
+			for(var j = 0; j < array_length_1d(mPlacesTest); j++) {
+				var mTest = mPlacesTest[j];
+				if (mPlace[0] == mTest[0] && mPlace[1] == mTest[1]) {
+					mRotate = true;
+					break;
+				}
+			}
+			break;
+		}
+	}
+	
+	if (mRotate == true) {
+		for(var i = 0; i < array_length_1d(mPlaces); i++) {
+			var mPlace = mPlaces[i];
+			mBoard[# mPlace[0], mPlace[1]] = 0;
+		}
+		mPlaces = mPlacesTest;
+		for(var i = 0; i < array_length_1d(mPlaces); i++) {
+			var mPlace = mPlaces[i];
+			mBoard[# mPlace[0], mPlace[1]] = mType + 1;
+		}
+		mDirty = true;
+	}
+}
+
 // Movement
 if /* Move Left */ (keyboard_check(ord("A")) == true) {
 	if (mHold[0]++ < 1 || (mHold[0] > (mHoldTime * 3) && mHold[0] % mHoldTime == mHoldTime - 1)) {
@@ -77,27 +109,6 @@ if /* Move Left */ (keyboard_check(ord("A")) == true) {
 if (keyboard_check_released(ord("A")) == true) mHold[0] = 0;
 if (keyboard_check_released(ord("D")) == true) mHold[1] = 0;
 if (keyboard_check_released(ord("S")) == true) mHold[2] = 0;
-
-// Rotate
-if (keyboard_check_pressed(ord("W")) == true) {
-	var mPlacesPrevious = []; array_copy(mPlacesPrevious, 0, mPlaces, 0, array_length_1d(mPlaces));
-	mPlaces = minoRotate(mBoard, mPlaces, minoDirection.LEFT);
-	
-	
-	for(var i = 0; i < array_length_1d(mPlaces); i++) {
-		var mPlace = mPlaces[i];
-		mOffset[0] = max(mOffset[0], mPlace[0]);
-		mOffset[1] = max(mOffset[1], mPlace[1]);
-		mBoard[# mPlace[0], mPlace[1]] = 0;
-	}
-		
-	for(var i = 0; i < array_length_1d(mPlaces); i++) {
-		var mPlace = mPlaces[i];
-		mBoard[# mPlace[0], mPlace[1]] = mType + 1;
-	}
-	//mPlaces = minoMove(mBoard, mPlaces, mOffset[0], mOffset[1]);
-	mDirty = true;
-}
 
 // Hard Drop
 if (keyboard_check_pressed(vk_space) == true) {
@@ -168,11 +179,7 @@ if (mDirty == true) {
 			draw_rectangle((xx * mSize) + 1, (yy * mSize) + 1, (xx * mSize) + mSize - 1, (yy * mSize) + mSize - 1, false);*/
 		
 			if (mBoard[# xx, yy] != 0) {
-				draw_set_colour(c_black);//global.minoColours[mBoard[# xx, yy] - 1]);
-				draw_rectangle(xx * mSize, yy * mSize, ((xx * mSize) + mSize) - 1, ((yy * mSize) + mSize) - 1, false);
-				var mColour = global.minoColours[mBoard[# xx, yy] - 1];
-				draw_rectangle_colour((xx * mSize) + 1, (yy * mSize) + 1, (((xx * mSize) + mSize) - 1) - 1, (((yy * mSize) + mSize) - 1) - 1, mColour, mColour, merge_colour(mColour, c_white, 0.5), merge_colour(mColour, c_white, 0.5),
-				false);
+				minoDraw(xx, yy, mSize, mBoard[# xx, yy]);
 			}
 		}
 	}
@@ -181,15 +188,10 @@ if (mDirty == true) {
 	do {
 		mOffset++;
 	} until (minoFree(mBoard, mPlaces, 0, mOffset) == false);
-	mOffset--;
 	draw_set_alpha(0.5);
 	for(var i = 0; i < array_length_1d(mPlaces); i++) {
 		var mPlace = mPlaces[i];
-		draw_set_colour(c_black);//global.minoColours[mBoard[# xx, yy] - 1]);
-		draw_rectangle(mPlace[0] * mSize, (mPlace[1] + mOffset) * mSize, ((mPlace[0] * mSize) + mSize) - 1, (((mPlace[1] + mOffset) * mSize) + mSize) - 1, false);
-		var mColour = global.minoColours[mType];
-		draw_rectangle_colour((mPlace[0] * mSize) + 1, ((mPlace[1] + mOffset) * mSize) + 1, (((mPlace[0] * mSize) + mSize) - 1) - 1, ((((mPlace[1] + mOffset) * mSize) + mSize) - 1) - 1, mColour, mColour, merge_colour(mColour, c_white, 0.5), merge_colour(mColour, c_white, 0.5), false)
-		
+		minoDraw(mPlace[0], mPlace[1] + (mOffset - 1), mSize, mType + 1);
 	}
 	draw_set_colour(c_white);
 	draw_set_alpha(1);

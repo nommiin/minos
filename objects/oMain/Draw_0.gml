@@ -1,7 +1,9 @@
-draw_rectangle_colour(32, 32, 32 + surface_get_width(mSurface), 32 + surface_get_height(mSurface), c_white, c_white, c_white, c_white, false);
-draw_surface_ext(mSurface, 32 + 2, 32 + 2, 1, 1, 0, c_black, 0.5);
-draw_surface(mSurface, 32, 32);
-
+//draw_rectangle_colour(32, 32, 32 + surface_get_width(mSurface), 32 + surface_get_height(mSurface), c_white, c_white, c_white, c_white, false);
+draw_set_colour(c_black);
+draw_rectangle(room_width / 2 - surface_get_width(mSurface) / 2, 32, room_width / 2 + surface_get_width(mSurface) / 2, 32 + surface_get_height(mSurface), true);
+draw_set_colour(c_white);
+draw_surface_ext(mSurface, ((room_width / 2) - (surface_get_width(mSurface) / 2)) + 1, 32 + 1, 1, 1, 0, c_black, 0.5);
+draw_surface(mSurface, (room_width / 2) - (surface_get_width(mSurface) / 2), 32);
 draw_text(2, 2, string(mPlaces))
 //draw_text_color(2, 2, "Score: " + string(mScore) + "\nLines: " + string(mLines), c_black, c_black, c_black, c_black, 1);
 //draw_text(4, 4, "mTick = " + string(mTick) + "\nmPaused = " + string(mPaused));
