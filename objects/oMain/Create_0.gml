@@ -20,6 +20,8 @@ mLevel = 1;
 
 mHeld = -1;
 mHeldPiece = undefined;
+mHeldAllowed = true;
+mType = irandom(minoType.COUNT - 1);
 
 mHold[0] = 0;
 mHold[1] = 0;
@@ -65,3 +67,5 @@ mCleared = false;
 // Window
 window_set_size(room_width * 3, room_height * 3);
 window_set_position(display_get_width() / 2 - room_width * 3 / 2, display_get_height() / 2 - room_height * 3 / 2);
+surface_resize(application_surface, room_width * 3, room_height * 3);
+display_reset(0, true);

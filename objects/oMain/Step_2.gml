@@ -41,7 +41,6 @@ if (mCheck == true) {
 	
 	mCheck = false;	
 } else if (mCreate == true) {//keyboard_check_pressed(vk_enter) == true) {
-	mType = irandom(minoType.COUNT - 1);
 	mPlaces = minoCreate(mBoard, mType, global.minoOffset[mType, 0], global.minoOffset[mType, 1]);
 	mCreate = false;
 	mCheck = true;
@@ -124,12 +123,29 @@ if (keyboard_check_pressed(vk_space) == true) {
 	}
 	mScore += mCount * 2;
 	mCreate = true;
+	mType = irandom(minoType.COUNT - 1);
 	mTick = 0;
+	mHeldAllowed = true;
 }
 
-if (keyboard_check_pressed(ord("C")) == true) {
+if (keyboard_check_pressed(ord("C")) == true && mHeldAllowed == true) {
+	// Clear pieces
+	for(var i = 0; i < array_length_1d(mPlaces); i++) {
+		var mPlace = mPlaces[i];
+		ds_grid_set(mBoard, mPlace[0], mPlace[1], 0);	
+	}
+	
+	// Copy current type
+	var mCopy = irandom(minoType.COUNT - 1);
+	if (mHeld != -1) {
+		mCopy = mHeld;
+	}
 	mHeld = mType;
-	mHeldPiece = minoGetShape(mHeld);
+	mType = mCopy;
+	mCreate = true;
+	mHeldAllowed = false;
+	
+	//show_debug_message()
 }
 
 // Game
@@ -153,6 +169,8 @@ if (mPaused == false && (mTick++ % mTimer) == mTimer - 1) {
 		mDirty = true;
 	} else {
 		mCreate = true;
+		mHeldAllowed = true;
+		mType = irandom(minoType.COUNT - 1);
 	}
 }
 
@@ -178,21 +196,10 @@ if (surface_exists(mSurface) == false) {
 }
 
 if (mDirty == true) {
+	mHeldPiece = minoGetShape(mHeld);
 	surface_set_target(mSurface);
 	draw_clear_alpha(c_white, 0);
-	// Render minos
-	for(var yy = 0; yy < ds_grid_height(mBoard); yy++) {
-		for(var xx = 0; xx < ds_grid_width(mBoard); xx++) {
-			/*draw_set_colour(c_black);
-			draw_rectangle(xx * mSize, yy * mSize, (xx * mSize) + mSize, (yy * mSize) + mSize, false);
-			draw_set_colour(c_white);
-			draw_rectangle((xx * mSize) + 1, (yy * mSize) + 1, (xx * mSize) + mSize - 1, (yy * mSize) + mSize - 1, false);*/
-		
-			if (mBoard[# xx, yy] != 0) {
-				minoDraw(xx, yy, mSize, mBoard[# xx, yy]);
-			}
-		}
-	}
+	
 	// Render ghost
 	var mOffset = 0;
 	do {
@@ -213,6 +220,15 @@ if (mDirty == true) {
 		draw_circle((mPlace[0] * mSize) + (mSize / 2), (mPlace[1] * mSize) + (mSize / 2), 2, false);
 	}
 	draw_set_colour(c_white);
+	
+	// Render minos
+	for(var yy = 0; yy < ds_grid_height(mBoard); yy++) {
+		for(var xx = 0; xx < ds_grid_width(mBoard); xx++) {
+			if (mBoard[# xx, yy] != 0) {
+				minoDraw(xx, yy, mSize, mBoard[# xx, yy]);
+			}
+		}
+	}
 	
 	surface_reset_target();
 	mDirty = false;
@@ -237,5 +253,5 @@ if (mTick > 60) {
 	}
 	*/
 
-mDirty = false;
+//mDirty = false;
 //}
