@@ -14,8 +14,15 @@ if (mHeld != -1) {
 	draw_rectangle(hx, by, bx, hy + (mSize * 4), true);
 	draw_set_colour(c_white);
 	
-	hx += (pw / 2);
-	hy += (ph / 2);
+	
+	
+	//draw_rectangle(hx, hy, hx + (, by + (mSize * 4), true);
+	
+	hx += (mSize * 4) / 2;
+	hx -= (pw / 2);
+	
+	hy += (mSize * 4) / 2;
+	hy -= (ph / 2);
 	for(var i = 0; i < array_length_1d(mHeldPiece); i++) {
 		var mPlace = mHeldPiece[i];
 		minoDrawFree(hx + (mPlace[0] * mSize), hy + (mPlace[1] * mSize), mSize, mHeld + 1);	
