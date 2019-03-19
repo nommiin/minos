@@ -267,6 +267,25 @@
             }
         },
         {
+            "Key": "493455ef-537b-4748-ab74-e56d5fa67979",
+            "Value": {
+                "id": "5c87ad9d-b7ee-41d8-9c65-e4c738c02b53",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/minoDrawFree\/minoDrawFree.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4a83f5c9-7413-42b7-b204-5ba88be44afb",
             "Value": {
                 "id": "954496e2-8aa7-41cf-92ae-41e22296fdef",
@@ -754,7 +773,8 @@
         "9c7a41c9-ab8e-4236-81d7-21caf96f9989",
         "7ca675ec-d547-4476-8be0-a7b70001665f",
         "0e3f5649-bcce-4d9d-910a-e4c63b12b26a",
-        "466f33dd-a3de-4e46-9eeb-8cea59fa301d"
+        "466f33dd-a3de-4e46-9eeb-8cea59fa301d",
+        "493455ef-537b-4748-ab74-e56d5fa67979"
     ],
     "tutorial": ""
 }

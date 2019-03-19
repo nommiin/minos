@@ -18,10 +18,16 @@ mScore = 0;
 mLines = 0;
 mLevel = 1;
 
+mHeld = -1;
+mHeldPiece = undefined;
+
 mHold[0] = 0;
 mHold[1] = 0;
 mHold[2] = 0;
 mHoldTime = 3;
+
+// Debug
+mRotation = [];
 
 // Minos
 global.minoColours[minoType.L] = make_color_rgb(255, 144, 0);

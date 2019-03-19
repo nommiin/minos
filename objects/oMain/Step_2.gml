@@ -48,21 +48,26 @@ if (mCheck == true) {
 	mDirty = true;
 }
 
-// Rotate
+// Rotations
 if (keyboard_check_pressed(ord("W")) == true) {
 	var mPlacesTest = minoRotate(mBoard, mPlaces, minoDirection.LEFT), mRotate = true;
 	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
-		var mPlace = mPlacesTest[i];
+		var mPlace = mPlacesTest[i], mSafe = true;
 		if (mBoard[# mPlace[0], mPlace[1]] != 0) {
-			mRotate = false;
-			for(var j = 0; j < array_length_1d(mPlacesTest); j++) {
-				var mTest = mPlacesTest[j];
-				if (mPlace[0] == mTest[0] && mPlace[1] == mTest[1]) {
-					mRotate = true;
+			mSafe = false;	
+			for(var j = 0; j < array_length_1d(mPlaces); j++) {
+				var mPlaceTest = mPlaces[j];
+				if (mPlace[0] == mPlaceTest[0] && mPlace[1] == mPlaceTest[1]) {
+					mSafe = true;	
 					break;
 				}
 			}
-			break;
+			
+			if (mSafe == false) {
+				mRotate = false;
+				break;
+			}
+			
 		}
 	}
 	
@@ -120,6 +125,11 @@ if (keyboard_check_pressed(vk_space) == true) {
 	mScore += mCount * 2;
 	mCreate = true;
 	mTick = 0;
+}
+
+if (keyboard_check_pressed(ord("C")) == true) {
+	mHeld = mType;
+	mHeldPiece = minoGetShape(mHeld);
 }
 
 // Game
@@ -195,8 +205,18 @@ if (mDirty == true) {
 	}
 	draw_set_colour(c_white);
 	draw_set_alpha(1);
+	
+	for(var i = 0; i < array_length_1d(mRotation); i++) {
+		var mPlace = mRotation[i];
+		//minoDraw(mPlace[0], mPlace[1], mSize, 1);
+		draw_set_colour(mPlace[2] == true ? c_lime : c_red);
+		draw_circle((mPlace[0] * mSize) + (mSize / 2), (mPlace[1] * mSize) + (mSize / 2), 2, false);
+	}
+	draw_set_colour(c_white);
+	
 	surface_reset_target();
 	mDirty = false;
+	
 }
 	
 	/*
