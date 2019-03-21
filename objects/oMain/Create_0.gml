@@ -23,6 +23,11 @@ mTimer = 30;
 mScore = 0;
 mLines = 0;
 mLevel = 1;
+mQueue = [];
+mQueueCount = 3;
+for(var i = 0; i < mQueueCount; i++) {
+	mQueue[i] = irandom(minoType.COUNT - 1);
+}
 
 /*
 	Holding

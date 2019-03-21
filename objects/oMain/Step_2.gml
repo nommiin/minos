@@ -169,7 +169,7 @@ if (mPaused == false && mInput[7] == true) {
 	// Create mino, set score, reset tick, and allow for holding again
 	mScore += mCount * 2;
 	mCreate = true;
-	mType = irandom(minoType.COUNT - 1);
+	mType = minoShift(mQueue, mQueueCount);
 	mTick = 0;
 	mHeldAllowed = true;
 }
@@ -184,9 +184,11 @@ if (mPaused == false && mInput[8] == true) {
 		ds_grid_set(mBoard, mPlace[0], mPlace[1], 0);	
 	}
 	// Copy the type to held
-	var mCopy = irandom(minoType.COUNT - 1);
+	var mCopy = -1;
 	if (mHeld != -1) {
 		mCopy = mHeld;
+	} else {
+		mCopy = minoShift(mQueue, mQueueCount);	
 	}
 	mHeld = mType;
 	mType = mCopy;
@@ -207,7 +209,7 @@ if (mPaused == false && (mTick++ % mTimer) == mTimer - 1) {
 		// Create mino and allow for holding if disabled
 		mCreate = true;
 		mHeldAllowed = true;
-		mType = irandom(minoType.COUNT - 1);
+		mType = minoShift(mQueue, mQueueCount);
 	}
 }
 

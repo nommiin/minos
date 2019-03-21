@@ -26,6 +26,45 @@ if (mHeld != -1) {
 }
 
 /*
+	Render piece queue
+*/
+var mQueueSize = mSize / 1.5;
+var qo = 0;//(mQueueSize * 4);
+
+draw_set_colour(c_black);
+for(var i = 0; i < mQueueCount; i++) {
+	var qp = minoGetShape(mQueue[i]);
+	
+	var qx = bx - (mQueueSize * 4);
+	var qy = by + (mSize * 4);
+	
+	
+	
+	draw_rectangle(qx, qy + qo, bx, (qy + qo) + (mQueueSize * 4), true);
+	
+	qx += (mQueueSize * 4) / 2;
+	qy += (mQueueSize * 4) / 2;
+	
+	qx -= (minoWidth(qp) * mQueueSize) / 2;
+	qy -= (minoHeight(qp) * mQueueSize) / 2;
+	
+	for(var j = 0; j < array_length_1d(qp); j++) {
+		var qpl = qp[j];
+		minoDraw(qx + (qpl[0] * mQueueSize), (qy + (qpl[1] * mQueueSize)) + qo, mQueueSize, mQueue[i] + 1);
+	}
+	
+	qo += (mQueueSize * 4);
+	
+	/*
+	var mQueuePiece = minoGetShape(mQueue[i]);
+	for(var j = 0; j < array_length_1d(mQueuePiece); j++) {
+		var mPlace = mQueuePiece[j];
+		minoDraw(hx, hy + (mPlace[1] * mQueueSize), mQueueSize, mQueue[i] + 1);	
+	}*/
+}
+draw_set_colour(c_white);
+
+/*
 	Render game information
 */
 draw_set_halign(fa_left);
