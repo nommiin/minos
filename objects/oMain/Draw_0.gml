@@ -30,6 +30,7 @@ if (mHeld != -1) {
 */
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+draw_set_colour(c_white);
 draw_text((bx + surface_get_width(mSurface)) + 4, by, "Score: " + string(mScore) + "\nLines: " + string(mLines) + "\nLevel: " + string(floor(mLines / 10) + 1));
 
 /*
