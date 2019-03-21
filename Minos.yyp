@@ -271,6 +271,25 @@
             }
         },
         {
+            "Key": "9c891fb6-2ee2-4c30-a229-009f9842c467",
+            "Value": {
+                "id": "cfe7ed89-3422-4adf-b596-05db98b27955",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/minoShift\/minoShift.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9e6023be-cd89-4a68-beb5-bed6fd49b21c",
             "Value": {
                 "id": "9758b284-dbbc-460a-a25b-403b75d02212",
@@ -413,7 +432,8 @@
         "d37d9bc7-2fb2-4a99-8f7e-68ca97988124",
         "0e3f5649-bcce-4d9d-910a-e4c63b12b26a",
         "493455ef-537b-4748-ab74-e56d5fa67979",
-        "466f33dd-a3de-4e46-9eeb-8cea59fa301d"
+        "466f33dd-a3de-4e46-9eeb-8cea59fa301d",
+        "9c891fb6-2ee2-4c30-a229-009f9842c467"
     ],
     "tutorial": ""
 }

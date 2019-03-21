@@ -89,10 +89,9 @@ if (mCheck == true) {
 */
 if (mPaused == false && (mInput[0] == true || mInput[9] == true)) {
 	//Determine the direction based on the button pressed
-	var dir = minoDirection.LEFT;
-	if(mInput[9] == true) dir = minoDirection.RIGHT
+	var mDirection = (mInput[9] == true ? minoDirection.LEFT : minoDirection.RIGHT);
 	// Rotate places and store rotation
-	var mPlacesTest = minoRotate(mBoard, mPlaces, dir), mRotate = true;
+	var mPlacesTest = minoRotate(mBoard, mPlaces, mDirection), mRotate = true;
 	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
 		// Check each place for rotation and see place is free
 		var mPlace = mPlacesTest[i], mSafe = true;
@@ -189,7 +188,7 @@ if (mPaused == false && mInput[7] == true) {
 	// Create mino, set score, reset tick, and allow for holding again
 	mScore += mCount * 2;
 	mCreate = true;
-	mType = irandom(minoType.COUNT - 1);
+	mType = minoShift(mQueue, mQueueCount);
 	mTick = 0;
 	mHeldAllowed = true;
 }
@@ -204,9 +203,11 @@ if (mPaused == false && mInput[8] == true && mHeldAllowed == true) {
 		ds_grid_set(mBoard, mPlace[0], mPlace[1], 0);	
 	}
 	// Copy the type to held
-	var mCopy = irandom(minoType.COUNT - 1);
+	var mCopy = -1;
 	if (mHeld != -1) {
 		mCopy = mHeld;
+	} else {
+		mCopy = minoShift(mQueue, mQueueCount);	
 	}
 	mHeld = mType;
 	mType = mCopy;
@@ -229,7 +230,7 @@ if (mPaused == false && (mTick++ % mTimer) == mTimer - 1) {
 		// Create mino and allow for holding if disabled
 		mCreate = true;
 		mHeldAllowed = true;
-		mType = irandom(minoType.COUNT - 1);
+		mType = minoShift(mQueue, mQueueCount);
 	}
 }
 
