@@ -39,7 +39,7 @@ mHold[0] = 0;
 mHold[1] = 0;
 mHold[2] = 0;
 mHoldTime = 3;
-mInput = [0, 0, 0, 0, 0, 0, 0, 0];
+mInput = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 // Replay
 mReplay = [];
