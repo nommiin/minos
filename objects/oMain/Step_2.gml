@@ -77,7 +77,7 @@ if (mCheck == true) {
 */
 if (mPaused == false && mInput[0] == true) {
 	// Rotate places and store rotation
-	var mPlacesTest = minoRotate(mBoard, mPlaces, minoDirection.LEFT), mRotate = true;
+	var mPlacesTest = minoRotate(mBoard, mPlaces, minoDirection.RIGHT), mRotate = true;
 	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
 		// Check each place for rotation and see place is free
 		var mPlace = mPlacesTest[i], mSafe = true;

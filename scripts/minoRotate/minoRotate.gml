@@ -2,10 +2,11 @@
 /// @function minoRotate(board, places, direction)
 /// @argument {ds_grid} board - A ds_grid containing all minos
 /// @argument {array} places - An array containing each mino
+/// @argument {real} direction - The direction in which to rotate the piece
 /// @returns {array} - The newly rotated piece places
-var mBoard = argument[0], mPlaces = argument[1], mPlacesRotation = undefined, mDirection = argument[0], mNormalization = minoNormalize(mPlaces);
+var mBoard = argument[0], mPlaces = argument[1], mPlacesRotation = undefined, mDirection = argument[2], mNormalization = minoNormalize(mPlaces);
 switch (mDirection) {
-	case minoDirection.RIGHT: {
+	case minoDirection.LEFT: {
 		var mMatrixNew = minoTranspose(mNormalization[0]);
 		minoReverse(mMatrixNew);
 		ds_grid_destroy(mNormalization[0]);
@@ -13,8 +14,8 @@ switch (mDirection) {
 		ds_grid_destroy(mMatrixNew);
 	break;}
 	
-	case minoDirection.LEFT: {
-		minoFlip(mNormalization[0]);
+	case minoDirection.RIGHT: {
+		minoReverse(mNormalization[0]);
 		var mMatrixNew = minoTranspose(mNormalization[0]);
 		ds_grid_destroy(mNormalization[0]);
 		mPlacesRotation = minoDenormalize(mMatrixNew, mNormalization[1]);
