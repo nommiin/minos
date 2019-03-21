@@ -78,10 +78,9 @@ if (mCheck == true) {
 */
 if (mPaused == false && (mInput[0] == true || mInput[9] == true)) {
 	//Determine the direction based on the button pressed
-	var dir = minoDirection.LEFT;
-	if(mInput[9] == true) dir = minoDirection.RIGHT
+	var mDirection = (mInput[9] == true ? minoDirection.LEFT : minoDirection.RIGHT);
 	// Rotate places and store rotation
-	var mPlacesTest = minoRotate(mBoard, mPlaces, dir), mRotate = true;
+	var mPlacesTest = minoRotate(mBoard, mPlaces, mDirection), mRotate = true;
 	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
 		// Check each place for rotation and see place is free
 		var mPlace = mPlacesTest[i], mSafe = true;
