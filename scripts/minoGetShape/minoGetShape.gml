@@ -1,4 +1,7 @@
-/// @function minoGetShape( piece )
+/// @description Gets the shape of a piece based off of the given argument
+/// @function minoGetShape(piece)
+/// @argument {real} piece - The piece to get the shape for
+/// @returns {array} - An array containing the pieces, empty if unknown piece
 var mPlaces = [];
 switch (argument[0]) {
 	case minoType.I: {

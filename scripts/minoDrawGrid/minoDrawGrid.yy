@@ -1,8 +1,8 @@
 {
-    "id": "493455ef-537b-4748-ab74-e56d5fa67979",
+    "id": "466f33dd-a3de-4e46-9eeb-8cea59fa301d",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "minoDraw",
+    "name": "minoDrawGrid",
     "IsCompatibility": false,
     "IsDnD": false
 }

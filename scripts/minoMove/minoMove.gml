@@ -1,9 +1,10 @@
-/// @function minoMove( board, places, x, y )
-/// @argument board - A ds_map containing all minos
-/// @argument places - An array containing the minos to move
-/// @argument x - The amount to move horizontally
-/// @argument y - The amount to move vertically
-/// @returns - The newly updated places
+/// @description Moves pieces and data in the board then returns the new places of the moved piece
+/// @function minoMove(board, places, x, y)
+/// @argument {ds_grid} board - A ds_grid containing all minos
+/// @argument {array} places - An array containing the minos to move
+/// @argument {real} x - The amount of places to move horizontally
+/// @argument {real} y - The amount of places to move vertically
+/// @returns {array} - The newly updated places
 var mBoard = argument[0], mPlaces = argument[1], mPlacesPrevious = [], mHorizontal = argument[2], mVertical = argument[3];
 for(var i = 0; i < array_length_1d(mPlaces); i++) {
 	var mPlace = mPlaces[i], mCopy = mBoard[# mPlace[0], mPlace[1]];

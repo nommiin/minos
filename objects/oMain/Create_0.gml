@@ -1,13 +1,19 @@
-// Graphics
+/*
+	Game graphics
+*/
 mSurface = -1;
 mDirty = true;
 
-// Logic
+/*
+	Game controls and logic
+*/
+randomize();
+mSeed = irandom(2147483647);
 mBoard = ds_grid_create(10, 20);
 mSize = 8;
 mTick = 0;
+mMode = 0;
 
-// Game
 mType = 0;
 mPaused = false;
 mCheck = false;
@@ -18,20 +24,41 @@ mScore = 0;
 mLines = 0;
 mLevel = 1;
 
+/*
+	Holding
+*/
 mHeld = -1;
 mHeldPiece = undefined;
 mHeldAllowed = true;
 mType = irandom(minoType.COUNT - 1);
 
+/*
+	Input
+*/
 mHold[0] = 0;
 mHold[1] = 0;
 mHold[2] = 0;
 mHoldTime = 3;
+mInput = [0, 0, 0, 0, 0, 0, 0, 0];
+
+// Replay
+mReplay = [];
+mReplayFrame = 0;
+mReplayInput = 0;
 
 // Debug
 mRotation = [];
 
-// Minos
+// Mode
+if (mMode == 0) {
+	random_set_seed(mSeed);	
+} else if (mMode == 1) {
+		
+}
+
+/*
+	Mino colours and spawn offsets
+*/
 global.minoColours[minoType.L] = make_color_rgb(255, 144, 0);
 global.minoColours[minoType.J] = make_color_rgb(0, 85, 160);
 global.minoColours[minoType.Z] = make_color_rgb(255, 0, 14);
@@ -48,23 +75,8 @@ global.minoOffset[minoType.O, 0] = 4; global.minoOffset[minoType.O, 1] = 0;
 global.minoOffset[minoType.I, 0] = 3; global.minoOffset[minoType.I, 1] = 0;
 
 /*
-enum minoType {
-	I,
-	O,
-	T,
-	S,
-	Z,
-	J,
-	L,
-	COUNT
-}
+	Window settings
 */
-
-// Debug
-mMoves = [];
-mCleared = false;
-
-// Window
 window_set_size(room_width * 3, room_height * 3);
 window_set_position(display_get_width() / 2 - room_width * 3 / 2, display_get_height() / 2 - room_height * 3 / 2);
 surface_resize(application_surface, room_width * 3, room_height * 3);

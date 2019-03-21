@@ -1,8 +1,10 @@
-/// @function minoFree( board, places, x, y )
-/// @argument board - A ds_map containing all minos
-/// @argument places - An array containing all minos to move
-/// @argument x - The horizontal position to check
-/// @argument y - The vertical position to check
+/// @description Checks if the position is free relative to the position of given places
+/// @function minoFree(board, places, x, y)
+/// @argument {ds_grid} board - A ds_grid containing all minos
+/// @argument {array} places - An array containing all minos to use in check
+/// @argument {real} x - The horizontal position to check
+/// @argument {real} y - The vertical position to check
+/// @returns {boolean} - If the checked position was free
 var mBoard = argument[0], mPlaces = argument[1], mHorizontal = argument[2], mVertical = argument[3];
 for(var i = 0; i < array_length_1d(mPlaces); i++) {
 	var mPlace = mPlaces[i];
