@@ -11,15 +11,16 @@ if (keyboard_check_pressed(vk_escape) == true) {
 	Capture all input inside of array
 	NOTE: Will be used later for replays
 */
-mInput[0] = keyboard_check_pressed(ord("W"));
-mInput[1] = keyboard_check(ord("A"));
-mInput[2] = keyboard_check(ord("D"));
-mInput[3] = keyboard_check(ord("S"));
-mInput[4] = keyboard_check_released(ord("A"));
-mInput[5] = keyboard_check_released(ord("D"));
-mInput[6] = keyboard_check_released(ord("S"));
+mInput[0] = keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("X"));
+mInput[1] = keyboard_check(ord("A")) || keyboard_check(vk_left);
+mInput[2] = keyboard_check(ord("D")) || keyboard_check(vk_right);
+mInput[3] = keyboard_check(ord("S")) || keyboard_check(vk_down);
+mInput[4] = keyboard_check_released(ord("A")) || keyboard_check_released(vk_left);
+mInput[5] = keyboard_check_released(ord("D")) || keyboard_check_released(vk_right);
+mInput[6] = keyboard_check_released(ord("S")) || keyboard_check_released(vk_down);
 mInput[7] = keyboard_check_pressed(vk_space);
 mInput[8] = keyboard_check_pressed(ord("C"));
+mInput[9] = keyboard_check_pressed(ord("Z")) || keyboard_check_pressed(ord("Y")); //Y for QWERTZ keyboards
 	
 /*
 	Line clearing and piece creation
@@ -75,9 +76,12 @@ if (mCheck == true) {
 /*
 	Piece rotation
 */
-if (mPaused == false && mInput[0] == true) {
+if (mPaused == false && (mInput[0] == true || mInput[9] == true)) {
+	//Determine the direction based on the button pressed
+	var dir = minoDirection.LEFT;
+	if(mInput[9] == true) dir = minoDirection.RIGHT
 	// Rotate places and store rotation
-	var mPlacesTest = minoRotate(mBoard, mPlaces, minoDirection.RIGHT), mRotate = true;
+	var mPlacesTest = minoRotate(mBoard, mPlaces, dir), mRotate = true;
 	for(var i = 0; i < array_length_1d(mPlacesTest); i++) {
 		// Check each place for rotation and see place is free
 		var mPlace = mPlacesTest[i], mSafe = true;
@@ -117,7 +121,6 @@ if (mPaused == false && mInput[0] == true) {
 		mDirty = true;
 	}
 }
-
 /*
 	Directional input
 */
