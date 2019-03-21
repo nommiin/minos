@@ -24,6 +24,7 @@ for(var i = 0; i < array_length_1d(mPlacesPrevious); i++) {
 	}
 	if (mMove == true) mBoard[# mPlacePrevious[0], mPlacePrevious[1]] = 0;
 }
+
 return mPlaces;
 /*
 for(var i = 0; i < array_length_1d(mPlaces); i++) {

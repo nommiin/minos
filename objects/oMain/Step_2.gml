@@ -58,9 +58,20 @@ if (mCheck == true) {
 		mLines += mClears;
 		mScore += 100;
 		switch (mClears) {
-			case 2: mScore += 200; break;
-			case 3: mScore += 400; break;
-			case 4: mScore += 700; break;
+			case 1:
+				audio_play_sound(sLine,10,false);
+			case 2:
+				mScore += 200;
+				audio_play_sound(sDouble,10,false);
+				break;
+			case 3:
+				mScore += 400;
+				audio_play_sound(sDouble,10,false);
+				break;
+			case 4:
+				mScore += 700;
+				audio_play_sound(sTetris,10,false);
+				break;
 		}
 	}
 	
@@ -131,6 +142,8 @@ if (mPaused == false) {
 			if (minoFree(mBoard, mPlaces, -1, 0) == true) {
 				mPlaces = minoMove(mBoard, mPlaces, -1, 0);
 				mDirty = true;
+				//Play the move sound
+				audio_play_sound(sMove,10,false);
 			}
 		}
 	} else if (mInput[2] == true) {
@@ -139,6 +152,8 @@ if (mPaused == false) {
 			if (minoFree(mBoard, mPlaces, 1, 0) == true) {
 				mPlaces = minoMove(mBoard, mPlaces, 1, 0);	
 				mDirty = true;
+				//Play the move sound
+				audio_play_sound(sMove,10,false);
 			}
 		}
 	} else if (mInput[3] == true) {
@@ -169,6 +184,8 @@ if (mPaused == false && mInput[7] == true) {
 		minoMove(mBoard, mPlaces, 0, 1);
 		mCount++;
 	}
+	//Play the place sound
+	audio_play_sound(sPlace,10,false);
 	// Create mino, set score, reset tick, and allow for holding again
 	mScore += mCount * 2;
 	mCreate = true;
@@ -180,7 +197,7 @@ if (mPaused == false && mInput[7] == true) {
 /*
 	Hold Mechanic
 */
-if (mPaused == false && mInput[8] == true) {
+if (mPaused == false && mInput[8] == true && mHeldAllowed == true) {
 	// Clear existing piece
 	for(var i = 0; i < array_length_1d(mPlaces); i++) {
 		var mPlace = mPlaces[i];
@@ -195,6 +212,8 @@ if (mPaused == false && mInput[8] == true) {
 	mType = mCopy;
 	mCreate = true;
 	mHeldAllowed = false;
+	//Play the hold sound
+	audio_play_sound(sHold,10,false);
 }
 
 /*
