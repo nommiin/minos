@@ -39,6 +39,9 @@ if (mOffset != 0) {
 	}
 }
 
+//Play the rotation sound
+audio_play_sound(sRotate,10,false);
+
 return mPlacesRotation;
 enum minoDirection {
 	LEFT,
